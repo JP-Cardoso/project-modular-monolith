@@ -3,6 +3,7 @@ import { ProductModel } from "../repository/product.model";
 import ProductRepository from "../repository/product.repository";
 import AddProductUseCase from "../use-case/add-product/add-product-usecase";
 import ProductAdmFacade from "./product-adm.facade";
+import ProductAdmFacadefactory from "../factory/facade.factory";
 
 describe('Product adm facade test', () => {
     let sequelize: Sequelize;
@@ -24,12 +25,14 @@ describe('Product adm facade test', () => {
     });
 
     it('should create a product', async () => {
-        const productRepo = new ProductRepository();
-        const addProductUseCase = new AddProductUseCase(productRepo);
-        const profuctfacade = new ProductAdmFacade({
-            addUseCase: addProductUseCase,
-            stockUseCase: undefined
-        });
+        // const productRepo = new ProductRepository();
+        // const addProductUseCase = new AddProductUseCase(productRepo);
+        // const profuctfacade = new ProductAdmFacade({
+        //     addUseCase: addProductUseCase,
+        //     stockUseCase: undefined
+        // });
+
+        const factoryProductFacade = ProductAdmFacadefactory.create()
 
         const input = {
             id: "1",
@@ -39,7 +42,7 @@ describe('Product adm facade test', () => {
             stock: 10,
         };
 
-        await profuctfacade.addProduct(input);
+        await factoryProductFacade.addProduct(input);
 
         const product = await ProductModel.findOne({
             where: {id: input.id}
