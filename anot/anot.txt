@@ -1,1 +1,2 @@
 Iremos começar pelo product-adm
+ - Criar um produto e buscar um produto
