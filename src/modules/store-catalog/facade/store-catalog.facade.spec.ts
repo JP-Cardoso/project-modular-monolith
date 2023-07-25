@@ -32,8 +32,6 @@ describe('Store catalog facade test', () => {
         });
 
         const result = await facade.find({ id: "1" });
-        console.log(result);
-
 
         expect(result.id).toBe("1");
         expect(result.name).toBe("Product 1");
