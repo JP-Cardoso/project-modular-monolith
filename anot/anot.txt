@@ -1,2 +1,7 @@
 Iremos começar pelo product-adm
- - Criar um produto e buscar um produto
+ - Criar um produto e buscar um produto;
+
+O modulo Store-Catalog:
+ - Vai ser responsável apenas por exibir as informações para
+   o front;
+
