@@ -64,7 +64,6 @@ describe("product repository test", () => {
 
         const productRepo = new ProductRepository();
         const product = await productRepo.find("1");
-        console.log(product);
         
         expect(product.id.id).toBe("1");
         expect(product.name).toBe("Product 1");

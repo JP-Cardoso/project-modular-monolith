@@ -20,8 +20,7 @@ describe('Add client Usecase unit test', () => {
         };
 
         const result = await useCase.execute(input);
-        console.log(result);
-        
+       
         expect(repo.add).toHaveBeenCalled();
 
         expect(result.id).toBeDefined();

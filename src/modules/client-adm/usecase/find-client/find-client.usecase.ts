@@ -1,9 +1,9 @@
 import Id from "../../../@shared/domain/value-object/id.value-object";
 import Client from "../../domain/client.entity";
 import ClientGateway from "../../gateway/client.gateway";
-import { AddClientInputDto, AddClientOutputDto } from "./add-client.usecase.dto";
+import { FindClientInputDto, FindClientOutputDto } from "./find-client.usecase.dto";
 
-export default class AddClientUseCase {
+export default class FindClientUseCase {
 
     private _clientRepository: ClientGateway;
 
@@ -13,18 +13,9 @@ export default class AddClientUseCase {
         this._clientRepository = repository
     }
 
-    async execute(input: AddClientInputDto): Promise<AddClientOutputDto> {
-        const { id, name, email, address } = input;
+    async execute(input: FindClientInputDto): Promise<FindClientOutputDto> {
 
-        const props = {
-            name: name,
-            email: email,
-            address: address,
-        };
-
-        const client = new Client(props);
-        
-        this._clientRepository.add(client);
+        const client = await this._clientRepository.find(input.id);     
 
         return {
             id: client.id.id,
