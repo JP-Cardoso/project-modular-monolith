@@ -4,6 +4,7 @@ import AddProductUseCase from "../use-case/add-product/add-product-usecase";
 import CheckStockUseCase from "../use-case/check-stock/check-stock.usecase";
 
 export default class ProductAdmFacadeFactory {
+    
     static create() {
         const productRepo = new ProductRepository();
 

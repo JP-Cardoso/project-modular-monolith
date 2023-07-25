@@ -18,9 +18,18 @@ export default class ProductRepository implements ProductGataway {
                 })
         );
     };
-    
-    find(id: string): Promise<Product> {
-        throw new Error("Method not implemented.");
+
+    async find(id: string): Promise<Product> {
+        const products = await ProductModel.findOne({ where: { id } });
+        console.log(products.toJSON());
+
+        return new Product({
+            id: new Id(products.id),
+            name: products.name,
+            description: products.description,
+            salesPrice: products.salesPrice
+        })
+
     }
 
 }
