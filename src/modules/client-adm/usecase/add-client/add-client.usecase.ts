@@ -17,6 +17,7 @@ export default class AddClientUseCase {
         const { id, name, email, address } = input;
 
         const props = {
+            id: new Id(id) || new Id(),
             name: name,
             email: email,
             address: address,
@@ -24,7 +25,7 @@ export default class AddClientUseCase {
 
         const client = new Client(props);
         
-        this._clientRepository.add(client);
+        this._clientRepository.add(client);       
 
         return {
             id: client.id.id,
