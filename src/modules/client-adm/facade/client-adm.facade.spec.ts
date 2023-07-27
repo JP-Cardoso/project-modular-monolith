@@ -4,6 +4,7 @@ import ClienteRepository from "../repository/client.repository";
 import AddClientUseCase from "../usecase/add-client/add-client.usecase";
 import ClientAdmFacade from "./client-adm.facade";
 import Id from "../../@shared/domain/value-object/id.value-object";
+import FindClientUseCase from "../usecase/find-client/find-client.usecase";
 
 describe('ClientAdmFacade Test', () => {
     let sequelize: Sequelize
@@ -44,12 +45,21 @@ describe('ClientAdmFacade Test', () => {
         await facade.add(input);
 
         const client = await ClientModel.findOne({ where: { id: "1" } });
-        console.log(client);
-        
 
         expect(client).toBeDefined();
         expect(client.name).toEqual(input.name);
         expect(client.email).toBe(input.email);
         expect(client.address).toBe(input.address);
+    });
+
+    it('should find a client', async () => {
+        const repository = new ClienteRepository();
+        const findUseCase = new FindClientUseCase(repository);
+        const facade = new ClientAdmFacade({
+            addUseCase: undefined,
+            findUseCase: findUseCase
+        });
+
+        
     });
 });
