@@ -1,0 +1,9 @@
+Comece pela:
+ - entity;
+ - usecase;
+    - tests
+ - repository;
+    tests
+ - facade;
+    tests
+ - factory
