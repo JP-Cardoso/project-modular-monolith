@@ -20,22 +20,23 @@ describe('Generate Invoice use case unit test', () => {
 
     it('should create a invoice', async () => {
         const repo = MockRepository();
-        const generateUseCase = new GenerateInvoiceUseCase(repo);
+        const generateUseCase =  new GenerateInvoiceUseCase(repo);
 
         const input =  {
-            // name: string,
-            // document: string,
-            // street: string,
-            // number: string,
-            // complement: string,
-            // city: string,
-            // state: string,
-            // zipCode: string,
-            // items: {
-            //     id: string,
-            //     name: string,
-            //     price: number,
-            // }[],
+            id: "1",
+            name: "test",
+            document: "15452313101",
+            street: "dos Bobos",
+            number: "0",
+            complement: "sesi",
+            city: "Franca",
+            state: "SP",
+            zipCode: "1440587",
+            items: [{
+                id: "1",
+                name: "Product",
+                price: 20,
+            }]
         }
 
         const result = await generateUseCase.execute(input);
