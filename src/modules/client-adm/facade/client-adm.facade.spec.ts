@@ -5,6 +5,7 @@ import AddClientUseCase from "../usecase/add-client/add-client.usecase";
 import ClientAdmFacade from "./client-adm.facade";
 import Id from "../../@shared/domain/value-object/id.value-object";
 import FindClientUseCase from "../usecase/find-client/find-client.usecase";
+import ClientAdmFacadeFactory from "../factory/client-adm.facade.factory";
 
 describe('ClientAdmFacade Test', () => {
     let sequelize: Sequelize
@@ -53,13 +54,21 @@ describe('ClientAdmFacade Test', () => {
     });
 
     it('should find a client', async () => {
-        const repository = new ClienteRepository();
-        const findUseCase = new FindClientUseCase(repository);
-        const facade = new ClientAdmFacade({
-            addUseCase: undefined,
-            findUseCase: findUseCase
-        });
+        const facade = ClientAdmFacadeFactory.create()
 
-        
+        const input = {
+            id: "1",
+            name: "Jhon Doe",
+            email: "teste@teste.com.br",
+            address: "Address 1"
+        }
+
+        await facade.add(input);
+        const client = await facade.find({ id: "1" });
+
+        expect(client).toBeDefined();
+        expect(client.name).toEqual(input.name);
+        expect(client.email).toBe(input.email);
+        expect(client.address).toBe(input.address);
     });
 });
